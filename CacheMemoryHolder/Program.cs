@@ -2,15 +2,31 @@
 using Microsoft.Extensions.Caching.Memory;
 
 Person person1 = new Person() { Id = "1", Name = "Eviatar" };
-Person person2 = new Person() { Id = "2", Name = "Tali" };
+int number = 99;
+/*Person person2 = new Person() { Id = "2", Name = "Tali" };
 Person person3 = new Person() { Id = "3", Name = "Shai" };
-List<Person> list = new List<Person> { person1, person2, person3 };
+List<Person> list = new List<Person> { person1, person2, person3 };*/
 
-await CacheKeeper.Instance().CreateMemoryCache(list, "person1", 10);
+CacheKeeper.Instance().CreateMemoryCache(person1, "person1", 10);
+CacheKeeper.Instance().CreateMemoryCache(number, "number", 10);
+Console.WriteLine(CacheKeeper.Instance().GetDataFromCache<Person>("person1").Name);
+Console.WriteLine(CacheKeeper.Instance().GetDataFromCache<int>("number"));
+
+Thread.Sleep(11000);
+
+try
+{
+    Console.WriteLine(CacheKeeper.Instance().GetDataFromCache<Person>("person1").Name);
+    Console.WriteLine(CacheKeeper.Instance().GetDataFromCache<int>("number"));
+}
+catch
+{
+    Console.WriteLine("Keys are null!");
+}
 /*await Holder.Instance().CreateMemoryCache(person2, "person2", 10);
 await Holder.Instance().CreateMemoryCache(person3, "person3", 10);*/
 
-List<Person> people = null;
+/*List<Person> people = null;
 CacheKeeper.MemoryCache?.TryGetValue("person1", out people);
 foreach(var v in people)
 {
@@ -29,7 +45,7 @@ try
 } catch (Exception e)
 {
     Console.WriteLine(e.Message);
-}
+}*/
 /*Person? newPerson1 = null;
 Person? newPerson2 = null;
 Holder.MemoryCache?.TryGetValue("person", out newPerson1);
