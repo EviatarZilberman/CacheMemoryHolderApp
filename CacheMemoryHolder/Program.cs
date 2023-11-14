@@ -10,7 +10,8 @@ List<Person> list = new List<Person> { person1, person2, person3 };*/
 CacheKeeper.Instance().CreateMemoryCache(person1, "person1", 10);
 CacheKeeper.Instance().CreateMemoryCache(number, "number", 10);
 Console.WriteLine(CacheKeeper.Instance().GetDataFromCache<Person>("person1").Name);
-Console.WriteLine(CacheKeeper.Instance().GetDataFromCache<int>("number"));
+int? a = CacheKeeper.Instance().GetDataFromCache<int>("number");
+Console.WriteLine(a);
 
 Thread.Sleep(11000);
 

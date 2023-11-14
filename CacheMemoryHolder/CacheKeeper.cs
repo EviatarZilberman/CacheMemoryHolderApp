@@ -27,7 +27,7 @@ namespace CacheMemoryHolder
             return instance;
         }
 
-        public async void CreateMemoryCache<T>(T anyObject, string key, int timeInSeconds)
+        public void CreateMemoryCache<T>(T anyObject, string key, int timeInSeconds)
         {
             var cacheEntryOptions = new MemoryCacheEntryOptions
             {
@@ -36,21 +36,11 @@ namespace CacheMemoryHolder
             MemoryCache.Set<T>(key, anyObject, cacheEntryOptions);
         }
 
-
         public T GetDataFromCache<T>(string? key = null)
         {
                 T? result;
                 MemoryCache.TryGetValue(key, out result);
                 return result;
         }
-        /*public async Task GetItemAsync<T> (MemoryCache memoryCache)
-        {
-            //List<T>? items;
-            T items; // anyObject???
-            items = MemoryCache.Get<T>("item");
-            //items?.Add(anyObject);
-
-            MemoryCache?.Set("item", items, TimeSpan.FromSeconds(10));
-        }*/
     }
 }
