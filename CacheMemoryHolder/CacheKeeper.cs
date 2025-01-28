@@ -38,9 +38,9 @@ namespace CacheMemoryHolder
 
         public T GetDataFromCache<T>(string? key = null)
         {
-                T? result;
-                MemoryCache.TryGetValue(key, out result);
-                return result;
+            T? result;
+            MemoryCache.TryGetValue(key, out result);
+            return result;
         }
     }
 }
